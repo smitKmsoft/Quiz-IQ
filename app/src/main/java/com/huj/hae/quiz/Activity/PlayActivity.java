@@ -71,7 +71,6 @@ public class PlayActivity extends AppCompatActivity {
     boolean isReplay = false;
 
     private RewardedAd rewardedAd;
-    private String AdId = "ca-app-pub-3940256099942544/5224354917";
 
 
     @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
@@ -198,6 +197,7 @@ public class PlayActivity extends AppCompatActivity {
 
         timeProgress.setProgress(i);
         mCountDownTimer = new CountDownTimer(Constant.timeDuration, Constant.interval) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
                 i++;
@@ -231,6 +231,7 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void showTimeOutDialog() {
         Dialog dialog = new Dialog(PlayActivity.this);
         dialog.setContentView(R.layout.timeout_dialog);
@@ -262,13 +263,7 @@ public class PlayActivity extends AppCompatActivity {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                selectedOption = "";
-                option1.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option2.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option3.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option4.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-
-                recreate();
+                finish();
                 dialog.dismiss();
             }
         });
@@ -276,10 +271,11 @@ public class PlayActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void showDefeatDialog() {
         Dialog dialog = new Dialog(PlayActivity.this);
         dialog.setContentView(R.layout.defeat_dialog);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.color.dialogbgclr));
         dialog.setCancelable(true);
 
@@ -309,13 +305,7 @@ public class PlayActivity extends AppCompatActivity {
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                selectedOption = "";
-                option1.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option2.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option3.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-                option4.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-
-                recreate();
+                finish();
                 dialog.dismiss();
             }
         });
@@ -323,10 +313,11 @@ public class PlayActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     private void ShowVictoryDialog() {
         Dialog dialog = new Dialog(PlayActivity.this);
         dialog.setContentView(R.layout.victory_dialog);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.color.dialogbgclr));
         dialog.setCancelable(true);
 
@@ -371,7 +362,9 @@ public class PlayActivity extends AppCompatActivity {
                 option3.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
                 option4.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
 
-                recreate();
+                data = loadJson();
+
+                countDownTimer();
                 dialog.dismiss();
             }
         });
@@ -379,12 +372,14 @@ public class PlayActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(v1 -> {
 
             selectedOption = "";
-            option1.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-            option2.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-            option3.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
-            option4.setBackground(getResources().getDrawable(R.drawable.option_bg, getTheme()));
+            option1.setBackground(getResources().getDrawable(R.drawable.option_bg, this.getTheme()));
+            option3.setBackground(getResources().getDrawable(R.drawable.option_bg, this.getTheme()));
+            option2.setBackground(getResources().getDrawable(R.drawable.option_bg, this.getTheme()));
+            option4.setBackground(getResources().getDrawable(R.drawable.option_bg, this.getTheme()));
 
-            recreate();
+            data = loadJson();
+
+            countDownTimer();
             dialog.dismiss();
 
         });
@@ -567,7 +562,8 @@ public class PlayActivity extends AppCompatActivity {
         if (rewardedAd == null) {
             System.out.println("Ads log ******** " + "Ad loading started");
             AdRequest adRequest = new AdRequest.Builder().build();
-            RewardedAd.load(this, AdId,
+            String adId = "ca-app-pub-3940256099942544/5224354917";
+            RewardedAd.load(this, adId,
                     adRequest, new RewardedAdLoadCallback() {
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
@@ -605,6 +601,7 @@ public class PlayActivity extends AppCompatActivity {
                     System.out.println("Ads log ******** " + "Ad was clicked.");
                 }
 
+                @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
                 @Override
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
