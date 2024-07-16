@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.sportbvet.game.quiz"
+    namespace = "com.huj.hae.quiz"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.sportbvet.game.quiz"
+        applicationId = "com.huj.hae.quiz"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

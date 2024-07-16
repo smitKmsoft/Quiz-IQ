@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz.Activity;
+package com.huj.hae.quiz.Activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.sportbvet.game.quiz.Class.Constant;
-import com.sportbvet.game.quiz.R;
+import com.huj.hae.quiz.Class.Constant;
+import com.huj.hae.quiz.R;
 
 public class SettingActivity extends AppCompatActivity {
 

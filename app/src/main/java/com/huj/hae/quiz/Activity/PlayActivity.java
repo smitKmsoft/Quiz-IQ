@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz.Activity;
+package com.huj.hae.quiz.Activity;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
@@ -27,13 +27,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.work.Constraints;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.NetworkType;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
@@ -45,9 +38,9 @@ import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.gson.Gson;
-import com.sportbvet.game.quiz.Class.Constant;
-import com.sportbvet.game.quiz.Model.Data;
-import com.sportbvet.game.quiz.R;
+import com.huj.hae.quiz.Class.Constant;
+import com.huj.hae.quiz.Model.Data;
+import com.huj.hae.quiz.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -56,7 +49,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class PlayActivity extends AppCompatActivity {
 

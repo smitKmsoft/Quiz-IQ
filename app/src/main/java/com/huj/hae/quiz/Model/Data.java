@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz.Model;
+package com.huj.hae.quiz.Model;
 
 import java.io.Serializable;
 

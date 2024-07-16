@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz.Activity;
+package com.huj.hae.quiz.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sportbvet.game.quiz.Class.Constant;
-import com.sportbvet.game.quiz.R;
+import com.huj.hae.quiz.Class.Constant;
+import com.huj.hae.quiz.R;
 
 public class MainActivity extends AppCompatActivity {
 

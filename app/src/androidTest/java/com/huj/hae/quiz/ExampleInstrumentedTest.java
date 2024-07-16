@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz;
+package com.huj.hae.quiz;
 
 import android.content.Context;
 

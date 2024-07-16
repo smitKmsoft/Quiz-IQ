@@ -1,4 +1,4 @@
-package com.sportbvet.game.quiz.Class;
+package com.huj.hae.quiz.Class;
 
 public class Constant {
 
