@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Quiz" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="android:statusBarColor">#6628C0</item>
+        <item name="colorAccent">#CAA7E0</item>
+
+    </style>
+
+    <style name="Theme.Quiz" parent="Base.Theme.Quiz" />
+
+</resources>
