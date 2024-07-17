@@ -2,6 +2,7 @@ package com.huj.hae.quiz.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         privacy_policy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.termsfeed.com/live/5bca077f-220f-4b46-9129-19d1d0a8521b"));
+                startActivity(browserIntent);
             }
         });
 
