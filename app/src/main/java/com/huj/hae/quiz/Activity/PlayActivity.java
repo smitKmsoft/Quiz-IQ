@@ -559,26 +559,31 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     public void loadRewardedVideoAd() {
-        if (rewardedAd == null) {
-            System.out.println("Ads log ******** " + "Ad loading started");
-            AdRequest adRequest = new AdRequest.Builder().build();
-            String adId = "ca-app-pub-3940256099942544/5224354917";
-            RewardedAd.load(this, adId,
-                    adRequest, new RewardedAdLoadCallback() {
-                        @Override
-                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                            // Handle the error.
-                            System.out.println("Ads log ******** " + loadAdError);
-                            rewardedAd = null;
-                        }
+        if (Constant.adsEnable) {
+            if (rewardedAd == null) {
+                System.out.println("Ads log ******** " + "Ad loading started");
+                AdRequest adRequest = new AdRequest.Builder().build();
+                String adId = "ca-app-pub-3940256099942544/5224354917";
+                RewardedAd.load(this, adId,
+                        adRequest, new RewardedAdLoadCallback() {
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error.
+                                System.out.println("Ads log ******** " + loadAdError);
+                                rewardedAd = null;
+                            }
 
-                        @Override
-                        public void onAdLoaded(@NonNull RewardedAd ad) {
-                            rewardedAd = ad;
-                            System.out.println("Ads log ******** " +"Ad was loaded.");
-                        }
-                    });
+                            @Override
+                            public void onAdLoaded(@NonNull RewardedAd ad) {
+                                rewardedAd = ad;
+                                System.out.println("Ads log ******** " +"Ad was loaded.");
+                            }
+                        });
+            }
+        } else {
+            rewardedAd = null;
         }
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.huj.hae.quiz.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -12,8 +13,17 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.huj.hae.quiz.Class.ApiClient;
+import com.huj.hae.quiz.Class.ApiInter;
 import com.huj.hae.quiz.Class.Constant;
 import com.huj.hae.quiz.R;
+
+import org.json.JSONObject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,10 +62,55 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        getAdsValue();
+
     }
 
     private void init() {
         start_btn = findViewById(R.id.start_btn);
         privacy_policy = findViewById(R.id.privacy_policy);
+    }
+
+    public void getAdsValue() {
+
+        ApiInter apiService = ApiClient.getRetrofit().create(ApiInter.class);
+        final Call<ResponseBody> call = apiService.GetAdsIds();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                String res = "";
+                try {
+
+                    if (response.isSuccessful()) {
+                        ResponseBody responseBody = response.body();
+                        res = responseBody.string();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (res.equals("")) {
+                    return;
+                }
+
+                try {
+                    System.out.println("getIds ===============> ");
+                    JSONObject jsonObject = new JSONObject(res);
+                    Constant.adsEnable = jsonObject.getBoolean("adsEnable");
+                    Constant.RewardAdsId = jsonObject.getString("rewardAdId");
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    Constant.adsEnable = false;
+                    Constant.RewardAdsId = "ca-app-pub-3940256099942544/5224354917";
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println(t.getMessage());
+                Constant.adsEnable = false;
+                Constant.RewardAdsId = "ca-app-pub-3940256099942544/5224354917";
+            }
+        });
+
     }
 }
